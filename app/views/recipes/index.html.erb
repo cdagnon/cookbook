@@ -1,0 +1,38 @@
+<h1>All Recipes<% if(@search_by)then %> matching "<%= @search_by %>"<% end %><% if(@search_by_ingredient) then %> with ingredients like "<%= @search_by_ingredient %>"<% end %></h1>
+
+<table class="recipes">
+<% if(@recipes.empty?) then -%>
+  <tr class="title_row">
+  	<th>No Recipes</th>
+  </tr>
+<% end -%>
+<% @recipes.each do |recipe| -%>
+  <tr class="title_row">
+    <td class="name col_name"><%= link_to recipe.name, recipe %></td>
+    <td class="col_by">by <%= link_to recipe.account.name, account_path(recipe.account.id) %></td>
+  </tr>
+  <tr class="content_row">
+    <td colspan="2"><%= recipe.description[0...100] %></td>
+  </tr>
+<% 	if(@search_by_ingredient) then -%>
+  <tr class="content_row">
+    <td colspan="2"><ol class="list_ingredients">
+<% 		matching = recipe.recipe_ingredients.find_all{|ri| ri.ingredient.name.include?(@search_by_ingredient) }
+		matching.each{ |ri| 
+    	%><li><%= ri.quantity_count %> <%= ri.quantity_type %> <%= ri.ingredient.name.gsub(@search_by_ingredient, "<b>#{@search_by_ingredient}</b>").html_safe %></li><% } %>
+<%		if (matching.size != recipe.recipe_ingredients.size ) then -%>
+    	<li>plus <%= recipe.recipe_ingredients.size - matching.size %> more ingredients</li>
+<%		end -%>
+    </ol></td>
+  </tr>
+  <tr class="space_row"><td>&nbsp;</td></tr>
+<% 	end -%>
+<% end -%>
+</table>
+
+<br />
+<% if (logged_in) then -%>
+<%= link_to 'New Recipe', new_recipe_path %>
+<% else -%>
+You must <%= link_to 'Register', new_account_path %> and <%= link_to 'Log in', login_path %> to add recipes.
+<% end -%>

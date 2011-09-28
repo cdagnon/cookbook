@@ -1,0 +1,354 @@
+body {
+	margin: 0;
+	margin-bottom: 25px;
+	padding: 0;
+	/* image found at http://noteatingoutinny.com/wp-content/uploads/dsc00052.jpg */
+/*	background-color: #d19405;	/* #feeebd;	/* #f0f0f0; */
+	background:#fff9e5 url('/images/foodimage_1280x960.jpg') no-repeat center center;
+	font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+	font-size: 13px;
+	color: #333;
+	width: 100%;
+	min-height: 100%;
+}
+
+h1 {
+	font-size: 28px;
+	color: #000;
+}
+
+a  {color: #03c}
+a:hover {
+	background-color: #03c;
+	color: white;
+	text-decoration: none;
+}
+
+ol, ul, dl {
+	clear: both;
+	margin: 0 0 0 1.5em;
+	padding-left: 0;
+}
+
+p.flush {
+	margin: 0;
+	padding: 0;
+}
+
+#page {
+/*	background-color: #f0f0f0; */
+	width: 790px;	/* 600 + 20 + 20 + 3 + 3 + 175 = 821 */
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#content {
+	float: left;
+	background-color: #fff9e5;
+	border: 3px solid #ffb73d;
+	border-top: none;
+	padding: 20px;
+	width: 550px;
+}
+
+#sidebar {
+	float: right;
+	width: 175px;
+	background-color: #ffdd57;
+	padding: 0.5em;
+}
+
+#footer {
+	clear: both;
+}
+
+
+#header, #about, #cookbook-content {
+	padding-left: 50px;
+	padding-right: 20px;
+}
+
+
+#header {
+/*        background-image: url("images/rails.png"); */
+	background-repeat: no-repeat;
+	background-position: top left;
+/*        height: 64px; */
+}
+#header h1, #header h2 {margin: 0 0 2px 0}
+#header h2 {
+	color: #888;
+	font-weight: normal;
+	font-size: 16px;
+}
+
+
+#about h3 {
+	margin: 0;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+
+#about-content {
+	background-color: #ffd;
+	border: 1px solid #fc0;
+	margin-left: -55px;
+	margin-right: -10px;
+}
+#about-content table {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 11px;
+	border-collapse: collapse;
+}
+#about-content td {
+	padding: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+#about-content td.name  {color: #555}
+#about-content td.value {color: #000}
+
+#about-content ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+#about-content.failure {
+	background-color: #fcc;
+	border: 1px solid #f00;
+}
+#about-content.failure p {
+	margin: 0;
+	padding: 10px;
+}
+
+
+#cookbook-content {
+	border-top: 1px solid #ccc;
+	margin-top: 20px;
+	padding-top: 12px;
+}
+#cookbook-content h1 {
+	margin: 0 0 0.25em 0;
+	font-size: 20px;
+}
+#cookbook-content h2 {
+	margin: 0;
+	font-size: 14px;
+	font-weight: normal;
+	color: #333;
+	margin-bottom: 25px;
+}
+/*
+#cookbook-content li {
+	font-size: 18px;
+	color: #888;
+	margin-bottom: 25px;
+}
+*/
+#cookbook-content li h2 {
+	margin: 0;
+	font-weight: normal;
+	font-size: 18px;
+	color: #333;
+}
+#cookbook-content li p {
+	color: #555;
+	font-size: 13px;
+}
+
+
+#sidebar ul {
+/*	margin-left: 0;
+	padding-left: 0;
+	margin: 2.5em 0 0 0; */
+	clear: both;
+	overflow: hidden;
+}
+#sidebar ul h3 {
+	margin-top: 25px;
+	font-size: 16px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+#sidebar h4 {
+	margin: 1em 0 0 0;
+}
+#sidebar li {
+	list-style-type: none;
+}
+#sidebar ul.links li {
+	margin-bottom: 5px;
+}
+
+#sidebar ol.search_row li {
+	padding: 0;
+}
+
+
+/*********** APP SPECIFIC **************/
+table.recipes {
+	width: 100%;
+	border-collapse: collapse;
+}
+table.recipes tr.title_row td {
+	border: 1px solid #999;
+	border-bottom: none;
+}
+table.recipes tr.title_row td.col_name {
+	border-right: none;
+	padding-left: 0.25em;
+}
+table.recipes tr.title_row td.col_by {
+	border-left: none;
+}
+table.recipes tr.content_row td {
+	border: 1px solid #999;
+	border-top: none;
+	padding-left: 0.25em;
+}
+table.recipes tr.space_row td {
+	border: none;
+	height: 5px;
+	line-height: 5px;
+}
+
+table.recipes .col_name {
+	width: 70%;
+	text-align: left;
+}
+table.recipes .col_by {
+	width: 30%;
+	text-align: left;
+}
+table.recipes tr.title_row td.name {
+	font-weight: bold;
+}
+
+
+form.new_recipe h3 {
+	margin: 0;
+}
+
+
+ol.row a {
+	text-decoration: none;
+}
+ol.row {
+	list-style-type: none;
+	clear: both;
+	float: left;
+	overflow: hidden;
+	width: 100%;
+	padding: 0;
+}
+ol.row li {
+	float: left;
+	padding: 3px 10px;
+}
+ol.row li.last {
+	clear: right;
+	border-right: none;
+}
+ol.row li.right {
+	float: right;
+}
+
+
+ol.up_t {
+	margin-top: 0;
+	margin-bottom: 1em;
+}
+ol.up_t li {
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+
+ol.search_row {
+	margin:0;
+}
+ul#sidebar-items ul.links {
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid #ccc;
+	margin-left: 0;
+	padding-left: 1.5em;
+	margin-bottom: 1em;
+}
+ul#sidebar-items ol.search_row li {
+	margin: 3px 0;
+	padding: 0;
+}
+ul#sidebar-items h3 {
+	margin-right: 2.5em;
+}
+ul#sidebar-items ul {
+	margin-right: 3em;
+}
+
+
+
+ol.input_ingredients {
+	margin: 0 0 1em 0;
+	list-style-type: disc;
+}
+ol.list_ingredients {
+	list-style-type: disc;
+}
+ol.input_ingredients li {
+	margin: 0 0 0 1.5em;
+}
+ol.input_ingredient_example {
+	margin: 0;
+	list-style-type: none;
+}
+ol.input_ingredient_example li {
+	margin: 0;
+}
+
+
+ol.show_ingredient_header {
+	margin: 0;
+}
+ol.show_ingredient_header li {
+	padding: 0;
+}
+ol.show_ingredient_header li.plaintext {
+	padding-top: 3px;
+	padding-right: 3px;
+}
+
+
+table.tbl_ingredients {
+	width: 100%;
+}
+table.tbl_ingredients td.indent_1 {
+	padding-left: 1.5em;
+}
+table.tbl_ingredients th.name{
+	text-align: left;
+	width: 50%;
+}
+table.tbl_ingredients th.desc{
+	width: 25%;
+}
+table.tbl_ingredients th.parent{
+	width: 20%;
+}
+
+input.error {
+	background-color: #F99;
+}
+
+p.error {
+	font-weight: bold;
+	color: red;
+}
+p.message {
+	font-weight: bold;
+	color: white;
+	background-color: #555;
+	padding-left: 0.25em;
+}
+

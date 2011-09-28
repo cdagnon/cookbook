@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookbook<%= content_for?(:title) ? ' - '+ yield(:title) : "" %></title>
+  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag 'jquery-ui-1.8.16.custom.css' %>
+  <%= javascript_include_tag 'jquery-1.6.2.min.js', 'jquery-ui-1.8.16.custom.min.js', 'autocomplete-rails.js', 'rails.js'  %>
+  <%= csrf_meta_tag %>
+  <%= yield(:head) %>
+</head>
+<body>
+    <div id="container" style="display:none;">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <%= content_tag :h1, yield(:title) if show_title? %>
+    </div>
+    <div id="page">
+      <div id="sidebar">
+<% if (logged_in()) then %>
+		<ol class="row up_t">
+			<li><%= link_to 'Logout', logout_path %></li>
+		</ol>
+		<p>Heya, <%= @current_user.name %>, want to <%= link_to 'create a new recipe?', new_recipe_path %></p>
+<% else %>
+		<ol class="row up_t">
+              <li><%= link_to 'Register', new_account_path %></li>
+              <li class="last"><%= link_to 'Login', login_path %></li>
+        </ol>
+<% end %>
+        <ul id="sidebar-items">
+          <li>
+            <h3>Have a look</h3>
+            <ul class="links">
+              <li><%= link_to 'Recipes', recipes_path %></li>
+              <li><%= link_to 'Ingredients', ingredients_path %></li>
+<% if (@current_user) then %>
+              <li><%= link_to 'Cooks', accounts_path %></li>
+<% end %>
+            </ul>
+          </li>
+        </ul>
+          <h4>find recipes</h4>
+          <%= form_tag( recipes_path, :id => 'recipe_name_search', :method => :get ) do %>
+          <ol class="row search_row">
+			  <li><input type="text" name="name" value="<%= @search_by %>" size="10"/></li><li class="last"><%= submit_tag 'by name' %></li>
+		  </ol>
+		  <% end %>
+          <%= form_tag( recipes_path, :id => 'recipe_ingredient_search', :method => :get ) do %>
+          <ol class="row search_row">
+			  <li><%=text_field_tag "ingredient_name", "#{@search_by_ingredient}", 'data-autocomplete'.to_sym => complete_ingredient_by_name_path, :size => 6 %></li>
+			  <li class="last"><%= submit_tag 'by ingredient' %></li>
+		  </ol>
+		  <% end %>
+      </div>
+
+      <div id="content">
+        <div id="header">
+          <h1>Cookbook</h1>
+          <h2>Wrangle your Recipes</h2>
+        </div>
+
+        <div id="cookbook-content">
+<%= yield %>
+        </div>
+      </div>
+
+      <div id="footer">&nbsp;</div>
+    </div>
+</body>
+</html>

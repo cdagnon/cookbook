@@ -1,0 +1,130 @@
+<%= javascript_include_tag('rsa/jsbn', 'rsa/prng4', 'rsa/rng', 'rsa/rsa', 'rsa/base64') %>
+<script type="text/javascript">
+function encrypt() {
+	encrypt_jquery();
+//	encrypt_prototype();
+}
+function encrypt_jquery() {
+	var rsa = new RSAKey();
+	rsa.setPublic($('#public_modulus').val(), $('#public_exponent').val());
+	var res = rsa.encrypt($('#password').val());
+	if (res) {
+        var encrypted = linebrk(hex2b64(res), 64);
+	alert("RES="+ res +"\nENC="+ encrypted);
+        $("input[name='login[encrypted_pwd]']").val(encrypted);
+        $("input[name='password']").val('');
+        $("input[name='confirm_password']").val('');
+        return true;
+	} else {
+	alert("FAILED ENCRYPT");
+	}
+	return false;
+}
+/*
+function encrypt_prototype() {
+//	var form = document.findElementById('login');	// This no longer works?!
+	var rsa = new RSAKey();
+//      alert($('public_modulus') +"\n"+ $('public_exponent') +"\n"+ $('upassword') +"\n"+ $('password') );
+//      alert($('public_modulus').name +"\n"+ $('public_exponent').name +"\n"+ $('upassword').name +"\n"+ $('password').name );
+	rsa.setPublic($('public_modulus').value, $('public_exponent').value);
+	var res = rsa.encrypt($('upassword').value);
+	if (res) {
+//        $('password').val(hex2b64(res));
+        encrypted = linebrk(hex2b64(res), 64);
+        $('password').setAttribute('value', encrypted);
+        $('upassword').value = '';
+        return true;
+	}
+	return false;
+}
+*/	
+$(document).ready(function() {
+	$("input#login_username").change(function() {
+		if( $("input#account_name").val().trim() == '' ) {
+			$("input#account_name").val($("input#login_username").val());
+		}
+	});
+    $("form#new_account").submit(function() {
+    try {
+//    	var ptn_username = /^[a-zA-Z0-9\-_]+$/;					// at least one character
+    	var ptn_username = /[a-zA-Z0-9]+/;						// at least one character
+    	// Validate
+    	var ctrl_username = $("input[name='login[username]']");
+//    	alert("UName: "+ ctrl_username +"\nVAL='"+ ctrl_username.val() +"'");
+
+    	pwds_match		= ($('#password').val() == $('#confirm_password').val());
+    	name_notblank	= ptn_username.test( ctrl_username.val() );
+    			
+//    	alert( "pwds match?="+ pwds_match +
+//    			"\nname ok?="+ name_notblank );
+		var is_valid = pwds_match && name_notblank;
+		
+		// Give visual cues
+		if(pwds_match) {
+			$('#password').removeClass('error');
+			$('#confirm_password').removeClass('error');
+		} else {
+			$('#password').addClass('error')
+			$('#confirm_password').addClass('error')
+		}
+		if(name_notblank) {
+			$("input[name='login[username]']").removeClass('error');
+		} else {
+			$("input[name='login[username]']").addClass('error');
+		}
+		
+		if(is_valid) {
+//			alert('YES');
+			encrypt();
+			return true;
+		}
+//		alert('NO!');
+		return false;
+
+	} catch (ee) {
+		alert('CODE FAIL: '+ ee);
+		return false;
+	}
+	});
+});
+</script>
+<%= form_for(@account, :html => {:id => 'new_account'}) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= render :partial => '/logins/fields_divs', :locals => {:login_obj => @account.login } %>
+
+  <div class="field">
+    <%= f.label :name, 'Nickname' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :language %>: <%= @account.language %>
+    <%= f.hidden_field :language %>
+  </div>
+  <div class="field">
+    <%= f.label :location_state, 'State' %><br />
+    <%= f.text_field :location_state %>
+  </div>
+  <div class="field">
+    <%= f.label :location_country, 'Country' %>: <%= @account.location_country %>
+    <%= f.hidden_field :location_country %>
+  </div>
+  <div class="field">
+    <%= f.label :background %><br />
+    <%= f.text_area :background, :cols => 56, :rows => 6 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= render '/logins/extra_fields' %>

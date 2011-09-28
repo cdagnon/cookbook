@@ -1,0 +1,24 @@
+<%= javascript_include_tag('rsa/jsbn', 'rsa/prng4', 'rsa/rng', 'rsa/rsa', 'rsa/base64', 'encrypt') %>
+
+<h2>Log in to add Recipes.  Have you <%= link_to 'registered', new_account_path %> yet?</h2>
+
+<%= render :partial => '/layouts/show_messages' %>
+<%= form_tag login_path, :id => 'login', :onsubmit => 'encrypt(); return true;' %>
+
+  <div class="field">
+    <%= label_tag :username, 'login' %><br />
+    <%= text_field_tag :username, @username %>
+  </div>
+  <div class="field">
+    <%= label_tag :password, 'password' %><br />
+    <%= password_field_tag :password, '' %>
+    <%= hidden_field_tag "login[encrypted_pwd]".to_sym, '' %>
+  </div>
+  <div class="actions">
+  <%= submit_tag "Log In", :class => "submit" %> 
+  </div>
+</end>
+<form>
+<%= hidden_field_tag :public_modulus, @public_modulus %>
+<%= hidden_field_tag :public_exponent, @public_exponent %>
+</form>

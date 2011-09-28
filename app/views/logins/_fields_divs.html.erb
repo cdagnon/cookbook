@@ -1,0 +1,37 @@
+<%= javascript_include_tag('rsa/jsbn', 'rsa/prng4', 'rsa/rng', 'rsa/rsa', 'rsa/base64') %>
+<script type="text/javascript">
+// This is for jQuery
+$(document).ready(function() {
+    $("form#login").submit(function() {
+      var rsa = new RSAKey();
+      rsa.setPublic($('#public_modulus').val(), $('#public_exponent').val());
+      var res = rsa.encrypt($('#encrypted_pwd').val());
+      if (res) {
+        $('#password').val(hex2b64(res));
+        encrypted = linebrk(hex2b64(res), 64);
+        $('#password').setAttribute('value', encrypted);
+        $('#encrypted_pwd').val('');
+        return true;
+      }
+      return false;
+    })
+  });
+</script>
+
+<%= fields_for login_obj do |f| %>
+  <div class="field">
+    <%= f.label :username, 'Login' %><br />
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <input type="password" name="password" id="password" value="" />
+    <%= f.hidden_field :encrypted_pwd %>
+    <%= f.hidden_field :salt %>
+  </div>
+  <div class="field">
+    <%= f.label :confirm_password %><br />
+    <input type="password" name="confirm_password" id="confirm_password" value="" />
+  </div>
+<% end %>
+

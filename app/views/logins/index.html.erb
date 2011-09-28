@@ -1,0 +1,31 @@
+<h1>Listing logins</h1>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Encrypted pwd</th>
+    <th>Salt</th>
+    <th>Last logged in at</th>
+    <th>Account</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @logins.each do |login| %>
+  <tr>
+    <td><%= login.username %></td>
+    <td><%= login.encrypted_pwd %></td>
+    <td><%= login.salt %></td>
+    <td><%= login.last_logged_in_at %></td>
+    <td><%= login.account_id %></td>
+    <td><%= link_to 'Show', login %></td>
+    <td><%= link_to 'Edit', edit_login_path(login) %></td>
+    <td><%= link_to 'Destroy', login, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Login', new_login_path %>

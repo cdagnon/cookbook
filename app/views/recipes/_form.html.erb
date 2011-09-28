@@ -1,0 +1,64 @@
+<script type="text/javascript">
+var pattern_quantity = /^([1-9][0-9]{0,2})? ?([1-9][\\\/\.][1-9][0-9]?)?$/;
+function validate_quantity(obj) {
+	var text = obj.value
+	if (pattern_quantity.test(text) == false) {
+//		alert("NOT A NUMBER");
+//		obj.setStyle({backgroundColor: '#F99'});	// Prototype
+		$('#'+ obj.id ).css('backgroundColor', '#F99');			// jQuery
+	} else {
+//		alert("good stuff: "+ text +"\ncolor=["+ obj.style.backgroundColor +"]" );
+//		obj.setStyle({backgroundColor: ''});	// The only way to get the borders to revert to normal
+		$('#'+ obj.id ).css('backgroundColor', '');			// jQuery
+	}
+}
+</script>
+
+<%= form_for(@recipe) do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 65 %>
+  </div>
+  <div class="field">
+    <%= f.label :source %>
+    <%= f.text_field :source, :size => 65 %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :cols => 56, :rows => 4 %>
+  </div>
+  <div class="field">
+  	<ol class="row">
+  		<li><h3>Ingredients</h3></li>
+  		<li class="last"></li>
+  	</ol>
+  	<ol class="input_ingredient_example">
+  	<li>eg. <input type="text" value="1 1/2" size="3" disabled="true" class="example" />
+	<input type="text" value="cup(s)" size="10" disabled="true" class="example" />
+	<input type="text" value="flour" size="30" disabled="true" class="example" %></li>
+	</ol>
+  	<ol class="input_ingredients" id="input_ingredients">
+	<%= render :partial => 'add_ingredient_form', :collection => @recipe.recipe_ingredients %>
+  	<%= render :partial => 'add_ingredient_form', :locals => {:row_index => (@recipe.recipe_ingredients.size+1) } %>
+  	</ol>
+  </div>
+  <div class="field">
+    <%= f.label :directions %><br />
+    <%= f.text_area :directions, :cols => 56, :rows => 10 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

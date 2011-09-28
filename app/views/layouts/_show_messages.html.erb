@@ -1,0 +1,16 @@
+<% if @message then -%>
+	<p class="message"><%= @message %></p>
+<% end -%>
+<% if @error then -%>
+	<p class="error"><%= @error %></p>
+<% end -%>
+<% if flash[:error] then -%>
+	<p class="error"><%= flash[:error] %></p>
+<% end -%>
+<% if flash[:message] then -%>
+	<p class="message"><%= flash[:message] %></p>
+<% end -%>
+<% if notice then -%>
+	<p id="notice"><%= notice %></p>
+<% end -%>
+

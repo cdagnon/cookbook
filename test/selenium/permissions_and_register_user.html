@@ -1,0 +1,1183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>permissions_and_register_user</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">permissions_and_register_user</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/recipes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//ul[@id='sidebar-items']/li/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Recipes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Ingredients</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='header']/h1</td>
+	<td>Cookbook</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='header']/h2</td>
+	<td>Wrangle your Recipes</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/h1</td>
+	<td>All Recipes</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>You must Register and Log in to add recipes.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/recipes/new</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/h2</td>
+	<td>exact:Log in to add Recipes. Have you registered yet?</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='login']/div[2]/label</td>
+	<td>login</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='login']/div[3]/label</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='login']//input[@name='commit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>//form[@id='login']//input[@name='commit']</td>
+	<td>Log In</td>
+</tr>
+<!--Log in an unregistered user-->
+<tr>
+	<td>type</td>
+	<td>username</td>
+	<td>John</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>smith</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//form[@id='login']//input[@name='commit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='cookbook-content']/p</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p</td>
+	<td>You must enter a correct user name and password</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>username</td>
+	<td>John</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>password</td>
+	<td></td>
+</tr>
+<!--Blank inputs-->
+<tr>
+	<td>type</td>
+	<td>username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//form[@id='login']//input[@name='commit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='cookbook-content']/p</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p</td>
+	<td>You must enter both a user name and password</td>
+</tr>
+<!--Register a user-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=registered</td>
+	<td></td>
+</tr>
+<!--    verify form-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='cookbook-content']/h1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/h1</td>
+	<td>Create an Account</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[2]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[2]/label</td>
+	<td>Login</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>login_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>login_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[3]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[3]/label</td>
+	<td>Password</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[4]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[4]/label</td>
+	<td>Confirm password</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>confirm_password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>confirm_password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[5]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[5]/label</td>
+	<td>Nickname</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>account_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>account_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[6]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[6]/label</td>
+	<td>Language</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[6]</td>
+	<td>exact:Language: English</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[7]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[7]/label</td>
+	<td>State</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>account_location_state</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>account_location_state</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[8]</td>
+	<td>exact:Country: U.S.A.</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_account']/div[9]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_account']/div[9]/label</td>
+	<td>Background</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>account_background</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>account_background</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>account_submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>account_submit</td>
+	<td>Create Account</td>
+</tr>
+<!--    add a user-->
+<tr>
+	<td>type</td>
+	<td>login_username</td>
+	<td>John</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>confirm_password</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>account_location_state</td>
+	<td>WI</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>account_background</td>
+	<td>An amateur cook and baker.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>account_submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='cookbook-content']/p</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p</td>
+	<td>Account was successfully created. Please log in to start adding recipes!</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>password</td>
+	<td></td>
+</tr>
+<!--No password-->
+<tr>
+	<td>type</td>
+	<td>username</td>
+	<td>John</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//form[@id='login']//input[@name='commit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p</td>
+	<td>You must enter a correct user name and password</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>username</td>
+	<td>John</td>
+</tr>
+<!--Log in (correctly)-->
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>1234</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//form[@id='login']//input[@name='commit']</td>
+	<td></td>
+</tr>
+<!--Basic page-->
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/h1</td>
+	<td>All Recipes</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>No Recipes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=New Recipe</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Recipes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Ingredients</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>John</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Register</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=Login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='sidebar']/p</td>
+	<td>exact:Heya, John, want to create a new recipe?</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=exact:create a new recipe?</td>
+	<td></td>
+</tr>
+<!--Look at ingredients-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Ingredients</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=baking soda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>link=baking powder</td>
+	<td></td>
+</tr>
+<!--Create a Recipe-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=exact:create a new recipe?</td>
+	<td></td>
+</tr>
+<!--    verify form page-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Recipes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Ingredients</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>John</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/h1</td>
+	<td>Add a New Recipe</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_recipe']/div[2]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_recipe']/div[2]/label</td>
+	<td>Name</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>recipe_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>recipe_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>recipe_name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_recipe']/div[3]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_recipe']/div[3]/label</td>
+	<td>Source</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>recipe_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>recipe_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>recipe_source</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_recipe']/div[4]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_recipe']/div[4]/label</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>recipe_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>recipe_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>recipe_description</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[1]/li[1]/h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[1]/li[1]/h3</td>
+	<td>Ingredients</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[2]/li</td>
+	<td>eg.</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[2]/li/input[1]</td>
+	<td>1 1/2</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[2]/li/input[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[2]/li/input[2]</td>
+	<td>cup(s)</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[2]/li/input[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[2]/li/input[3]</td>
+	<td>flour</td>
+</tr>
+<tr>
+	<td>assertNotEditable</td>
+	<td>//form[@id='new_recipe']/div[5]/ol[2]/li/input[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>quantity_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>quantity_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>quantity_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>measurement_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>measurement_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>measurement_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>ingredient_name_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>ingredient_name_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>ingredient_name_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//form[@id='new_recipe']/div[6]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form[@id='new_recipe']/div[6]/label</td>
+	<td>Directions</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>recipe_directions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>recipe_directions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>recipe_directions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>recipe_submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>recipe_submit</td>
+	<td>Create Recipe</td>
+</tr>
+<!--Add a Recipe-->
+<tr>
+	<td>type</td>
+	<td>recipe_name</td>
+	<td>dough</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>recipe_source</td>
+	<td>made-up</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>recipe_description</td>
+	<td>Basic stuff</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>quantity_1</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>measurement_1</td>
+	<td>cups</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>ingredient_name_1</td>
+	<td>flour</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>ingredient_name_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>quantity_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>quantity_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>quantity_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>measurement_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>measurement_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>measurement_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>ingredient_name_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>ingredient_name_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>ingredient_name_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>quantity_2</td>
+	<td>1 1/2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>measurement_2</td>
+	<td>cups</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>ingredient_name_2</td>
+	<td>water</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>ingredient_name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>quantity_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>quantity_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>quantity_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>measurement_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>measurement_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>measurement_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>ingredient_name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>ingredient_name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEditable</td>
+	<td>ingredient_name_3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>quantity_3</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>measurement_3</td>
+	<td>tspn</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>ingredient_name_3</td>
+	<td>baking soda</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>ingredient_name_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>quantity_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>quantity_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>quantity_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>measurement_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>measurement_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>measurement_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>ingredient_name_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>ingredient_name_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>ingredient_name_4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>quantity_4</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>measurement_4</td>
+	<td>tspn</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>ingredient_name_4</td>
+	<td>baking powder</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>recipe_directions</td>
+	<td>Mix together thoroughly in a big bowl, then knead forever and bake as desired.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>recipe_submit</td>
+	<td></td>
+</tr>
+<!--Verify the new Recipe-->
+<tr>
+	<td>assertText</td>
+	<td>notice</td>
+	<td>Recipe was successfully created.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[2]</td>
+	<td>exact:Name: dough</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[3]</td>
+	<td>Originally from: made-up</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[4]</td>
+	<td>exact:Description: Basic stuff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[5]/b</td>
+	<td>Ingredients</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/ol/li[1]</td>
+	<td>2 cups flour</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/ol/li[2]</td>
+	<td>1 1/2 cups water</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/ol/li[3]</td>
+	<td>1 tspn baking soda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/ol/li[4]</td>
+	<td>1 tspn baking powder</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[6]</td>
+	<td>exact:Directions: Mix together thoroughly in a big bowl, then knead forever and bake as desired.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[7]</td>
+	<td>Entered by: John</td>
+</tr>
+<!--List Recipes-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Recipes</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/h1</td>
+	<td>All Recipes</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=dough</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=John</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Basic stuff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=New Recipe</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=dough</td>
+	<td></td>
+</tr>
+<!--Verify the new Recipe-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>notice</td>
+	<td>Recipe was successfully created.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[1]</td>
+	<td>exact:Name: dough</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[2]</td>
+	<td>Originally from: made-up</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[3]</td>
+	<td>exact:Description: Basic stuff</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[4]/b</td>
+	<td>Ingredients</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/ol/li[1]</td>
+	<td>2 cups flour</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/ol/li[2]</td>
+	<td>1 1/2 cups water</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/ol/li[3]</td>
+	<td>1 tspn baking soda</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/ol/li[4]</td>
+	<td>1 tspn baking powder</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[5]</td>
+	<td>exact:Directions: Mix together thoroughly in a big bowl, then knead forever and bake as desired.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/p[6]</td>
+	<td>Entered by: John</td>
+</tr>
+<!--Verify ingredients added-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Ingredients</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=baking soda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=baking powder</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

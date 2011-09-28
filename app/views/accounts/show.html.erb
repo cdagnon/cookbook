@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Login:</b>
+  <%= @account.login.username %>
+</p>
+
+<p>
+  <b>Nickname:</b>
+  <%= @account.name %>
+</p>
+
+<p>
+  <b>Background:</b>
+  <%= @account.background %>
+</p>
+
+<p>
+  <b>Language:</b>
+  <%= @account.language %>
+</p>
+
+<p>
+  <b>Location state:</b>
+  <%= @account.location_state %>
+</p>
+
+<p>
+  <b>Location country:</b>
+  <%= @account.location_country %>
+</p>
+
+<p>
+  <b>Registered at:</b>
+  <%= @account.registered_at %>
+</p>
+
+<% if (logged_in) then -%>
+<!-- <%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'List', accounts_path %> -->
+<% else -%>
+<%= link_to 'Log in to Cookbook', login_path %>
+<% end -%>

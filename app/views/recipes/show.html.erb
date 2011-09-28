@@ -1,0 +1,46 @@
+<%= render :partial => '/layouts/show_messages' %>
+<%	 @current_batch_size ||= '1' -%>
+
+<p>
+  <b>Name:</b>
+  <%= @recipe.name %>
+</p>
+<p>
+  <b>Originally from:</b>
+  <%= @recipe.source %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @recipe.description %>
+</p>
+<p class="flush">
+<ol class="row show_ingredient_header">
+	<li><b>Ingredients</b></li>
+	<li class="right">
+		<ol class="row">
+		<li class="plaintext">more or less?</li>
+		<li><%= form_tag recipe_path(@recipe), :method => :get %>
+	<%= select_tag 'batch_size', ['1/4', '1/3', '1/2', '2/3', '3/4', '1', '2', '3', '4', '6', '8', '10'].collect{|ii| "<option value='#{ii}'#{ii == @current_batch_size ? " selected='selected'" : ""}>#{ii}</option>"}.join('').html_safe %>
+		<%= submit_tag 'resize measurements', :name => 'btn_new_batch' %>
+		</form></li>
+		</ol>
+	</li>
+</ol>
+</p>
+	<ol class="list_ingredients">
+<%	multiply_ingredients(@recipe, @current_batch_size)
+	@recipe.recipe_ingredients.each{ |ri| -%>
+		<li><%= ri.quantity_count %> <%= ri.quantity_type %> <%= ri.ingredient.name %></li>
+<%	} -%>
+	</ol>
+<p>
+  <b>Directions:</b>
+  <%= @recipe.directions %>
+</p>
+
+<p>
+  <b>Entered by:</b>
+  <%= @recipe.account.name %>
+</p>
+

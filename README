@@ -1,0 +1,9 @@
+2011-09-27T 23:26CT
+
+This webapp lets users organize recipes.
+You must register and then log in to be able to add recipes or list the cooks,
+but anyone can list or search recipes.
+
+See /test/selenium/ for all verified user functionality.
+
+-Chris

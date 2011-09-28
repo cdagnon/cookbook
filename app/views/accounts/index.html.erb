@@ -1,0 +1,33 @@
+<h1>Listing accounts</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Background</th>
+    <th>Language</th>
+    <th>Location state</th>
+    <th>Location country</th>
+    <th>Registered at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @accounts.each do |account| %>
+  <tr>
+    <td><%= account.name %></td>
+    <td><%= account.background %></td>
+    <td><%= account.language %></td>
+    <td><%= account.location_state %></td>
+    <td><%= account.location_country %></td>
+    <td><%= account.registered_at %></td>
+    <td><%= link_to 'Show', account %></td>
+    <td><%= link_to 'Edit', edit_account_path(account) %></td>
+    <td><%= link_to 'Destroy', account, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Account', new_account_path %>

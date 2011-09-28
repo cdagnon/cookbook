@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Username:</b>
+  <%= @login.username %>
+</p>
+
+<p>
+  <b>Encrypted pwd:</b>
+  <%= @login.encrypted_pwd %>
+</p>
+
+<p>
+  <b>Salt:</b>
+  <%= @login.salt %>
+</p>
+
+<p>
+  <b>Last logged in at:</b>
+  <%= @login.last_logged_in_at %>
+</p>
+
+<p>
+  <b>Account:</b>
+  <%= @login.account_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_login_path(@login) %> |
+<%= link_to 'List', logins_path %>

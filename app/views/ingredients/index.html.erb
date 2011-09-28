@@ -1,0 +1,21 @@
+<h1>Listing ingredients</h1>
+
+<table class="tbl_ingredients">
+  <tr>
+    <th class="name">Name</th>
+    <th class="desc">Description</th>
+    <th class="parent">Parent</th>
+  </tr>
+
+<% @ingredients.each do |ingredient| %>
+  <tr>
+    <td<% if(ingredient.parent) then %> class="indent_1"<% end %>><%= link_to ingredient.name, ingredient %></td>
+    <td><%= ingredient.description %></td>
+    <td><% if(ingredient.parent) then %><%= ingredient.parent.name %>(<%= ingredient.parent_id %>)<% end %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<!-- <%= link_to 'New Ingredient', new_ingredient_path %> -->

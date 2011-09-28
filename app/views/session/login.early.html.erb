@@ -1,0 +1,68 @@
+<%= javascript_include_tag('rsa/jsbn', 'rsa/prng4', 'rsa/rng', 'rsa/rsa', 'rsa/base64') %>
+<script type="text/javascript">
+// This is for jQuery
+$(document).ready(function() {
+    $("form#login").submit(function() {
+      var rsa = new RSAKey();
+      rsa.setPublic($('#public_modulus').val(), $('#public_exponent').val());
+      var res = rsa.encrypt($('#upassword').val());
+      if (res) {
+        $('#password').val(hex2b64(res));
+//        $('#password').value = hex2b64(res);
+//        $('#upassword').value = '';
+        encrypted = linebrk(hex2b64(res), 64);
+        $('#password').setAttribute('value', encrypted);
+//        $('#upassword').setAttribute('value', '');
+        $('#upassword').val('');
+        return true;
+      }
+      return false;
+    })
+  });
+/*		Prototype version:
+function encrypt() {
+//	var form = document.findElementById('login');	// This no longer works?!
+      var rsa = new RSAKey();
+//      alert($('public_modulus') +"\n"+ $('public_exponent') +"\n"+ $('upassword') +"\n"+ $('password') );
+//      alert($('public_modulus').name +"\n"+ $('public_exponent').name +"\n"+ $('upassword').name +"\n"+ $('password').name );
+      rsa.setPublic($('public_modulus').value, $('public_exponent').value);
+      var res = rsa.encrypt($('upassword').value);
+      if (res) {
+//        $('password').val(hex2b64(res));
+        encrypted = linebrk(hex2b64(res), 64);
+        $('password').setAttribute('value', encrypted);
+        $('upassword').value = '';
+        return true;
+      }
+      return false;
+}
+*/
+</script>
+
+<h2>Log in to add and comment on Recipes</h2>
+
+<% if @message then -%>
+	<p class="error"><%= @message %></p>
+<% end -%>
+<% if flash[:message] then -%>
+	<p class="error"><%= flash[:message] %></p>
+<% end -%>
+<%= form_tag login_path, :id => 'login', :onsubmit => 'encrypt(); return true;' %>
+
+  <div class="field">
+    <%= label_tag :username %><br />
+    <%= text_field_tag :username, @username %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %><br />
+    <%= password_field_tag :upassword, '' %>
+    <%= hidden_field_tag :password, '' %>
+  </div>
+  <div class="actions">
+  <%= submit_tag "Log In", :class => "submit" %> 
+  </div>
+</end>
+<form>
+<%= hidden_field_tag :public_modulus, @public_modulus %>
+<%= hidden_field_tag :public_exponent, @public_exponent %>
+</form>
