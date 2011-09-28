@@ -7,3 +7,49 @@ but anyone can list or search recipes.
 See /test/selenium/ for all verified user functionality.
 
 -Chris
+
+==========================
+INSTALL
+1a.	Download and unpack the project from https://github.com/cdagnon/cookbook
+1b.	Check out the project from git			(see http://help.github.com/ or http://help.github.com/win-set-up-git/)
+2. > cd cookbook
+3. > bundle install
+4. > rake db:reset					or		resetdb.bat
+(SEE NOTE below)
+
+RUN SERVER
+0. run install (above)
+1. > rails s --port=3637			or		dev.bat
+2. URL: http://localhost:3637/
+
+UNIT TESTS
+0. run install (above)
+1. > rake db:test:load				or		firstest.bat
+2. > rake test:units				or		testunits.bat
+
+Verify the front-end:
+0. Install the Firefox Selenium plug-in
+0.1. Install the project
+1. > rake db:reset					or		resetdb.bat
+2. Run server (above)
+3. Open cookbook/test/selenium/permissions_and_register_user.html in the Selenium IDE
+4. Run it.
+
+
+
+
+NOTE
+When I ran 'bundle install' 20110928W 00:30CT, and gem dependencies made it fail:
+----
+C:\tmp\cdagnon-cookbook-41c2955>bundle
+Fetching source index for http://rubygems.org/
+Bundler could not find compatible versions for gem "rack-test":
+  In Gemfile:
+    rails (= 3.0.1) depends on
+      rack-test (~> 0.5.4)
+
+    cucumber-rails (= 0.4.0) depends on
+      rack-test (0.6.1)
+----
+But during my initial install 7 days ago and now, 6.5 hours later, it runs fine (eg. no local modifications).
+

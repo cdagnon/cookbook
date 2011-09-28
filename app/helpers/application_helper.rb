@@ -3,6 +3,10 @@ module ApplicationHelper
 	def logged_in
 		! session[:current_user_account].nil?
 	end
+	
+	def abbreviate_and_pluralize_ingredients recipe
+		recipe.recipe_ingredients.each{|ri| ri.abbreviate_and_pluralize}
+	end
 
 	def multiply_ingredients recipe, str_multiplier
 		mult = 1
@@ -14,7 +18,6 @@ module ApplicationHelper
 			mult = $1.to_i
 			div = $2.to_i
 		end
-#Rails.logger.warn("MULT=[#{mult}]  DIV=[#{div}]   INPUT=[#{str_multiplier}]")
 		recipe.recipe_ingredients.each{|ri| ri.multiply(mult, div)}
 	end
 end

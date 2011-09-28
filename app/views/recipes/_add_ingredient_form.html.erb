@@ -1,6 +1,6 @@
 <% @row_index ||= row_index -%>
 <li><input type="text" name="quantity_<%= @row_index %>" id="quantity_<%= @row_index %>" value="" size="4" onchange="validate_quantity(this)"/>
-<input type="text" name="measurement_<%= @row_index %>" id="measurement_<%= @row_index %>" value="" size="10" />
+<%= select_tag "measurement_#{ @row_index }", RecipeIngredient::ALL_MEASURES.collect{|map| "<option value=\"#{map[:name]}\">#{map[:name]}</option>"}.join('').html_safe, :include_blank => true %>
 <%=text_field_tag "ingredient_name_#{ @row_index }", '', 'data-autocomplete'.to_sym => complete_ingredient_by_name_path, :size => 30 %>
 <%= link_to 'add', "/add_ingredient_to_recipe/#{@row_index}.js", :name => "href_add_ingredient_#{ @row_index }", :remote => true %>
 </li>

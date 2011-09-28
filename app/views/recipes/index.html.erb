@@ -18,6 +18,7 @@
   <tr class="content_row">
     <td colspan="2"><ol class="list_ingredients">
 <% 		matching = recipe.recipe_ingredients.find_all{|ri| ri.ingredient.name.include?(@search_by_ingredient) }
+		abbreviate_and_pluralize_ingredients(recipe)
 		matching.each{ |ri| 
     	%><li><%= ri.quantity_count %> <%= ri.quantity_type %> <%= ri.ingredient.name.gsub(@search_by_ingredient, "<b>#{@search_by_ingredient}</b>").html_safe %></li><% } %>
 <%		if (matching.size != recipe.recipe_ingredients.size ) then -%>

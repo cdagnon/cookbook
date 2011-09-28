@@ -784,9 +784,9 @@
 	<td>2</td>
 </tr>
 <tr>
-	<td>type</td>
+	<td>select</td>
 	<td>measurement_1</td>
-	<td>cups</td>
+	<td>label=cup</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -854,9 +854,9 @@
 	<td>1 1/2</td>
 </tr>
 <tr>
-	<td>type</td>
+	<td>select</td>
 	<td>measurement_2</td>
-	<td>cups</td>
+	<td>label=cup</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -924,9 +924,9 @@
 	<td>1</td>
 </tr>
 <tr>
-	<td>type</td>
+	<td>select</td>
 	<td>measurement_3</td>
-	<td>tspn</td>
+	<td>label=teaspoon</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -994,9 +994,9 @@
 	<td>1</td>
 </tr>
 <tr>
-	<td>type</td>
+	<td>select</td>
 	<td>measurement_4</td>
-	<td>tspn</td>
+	<td>label=teaspoon</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -1200,6 +1200,254 @@
 <tr>
 	<td>assertElementPresent</td>
 	<td>link=baking powder</td>
+	<td></td>
+</tr>
+<!--Search for recipes-->
+<tr>
+	<td>type</td>
+	<td>name</td>
+	<td>dough</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertLocation</td>
+	<td>*/recipes?*name=dough*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/h1</td>
+	<td>All Recipes matching &quot;dough&quot;</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=dough</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=John</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Basic stuff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name</td>
+	<td>dough</td>
+</tr>
+<!--Search by ingredient-->
+<tr>
+	<td>type</td>
+	<td>ingredient_name</td>
+	<td>flour</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='by ingredient']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/h1</td>
+	<td>All Recipes with ingredients like &quot;flour&quot;</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=dough</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTable</td>
+	<td>//div[@id='cookbook-content']/table.2.0</td>
+	<td>2 cups flour</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/table/tbody/tr[3]/td/ol/li/b</td>
+	<td>flour</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>ingredient_name</td>
+	<td>flour</td>
+</tr>
+<tr>
+	<td>assertValue</td>
+	<td>name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>ingredient_name</td>
+	<td>r</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='by ingredient']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>All Recipes with ingredients like &quot;r&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2 cups flour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1 1/2 cups water</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1 tspn baking powder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/table/tbody/tr[3]/td/ol/li[1]/b</td>
+	<td>r</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/table/tbody/tr[3]/td/ol/li[2]/b</td>
+	<td>r</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cookbook-content']/table/tbody/tr[3]/td/ol/li[3]/b</td>
+	<td>r</td>
+</tr>
+<!--Batch sizes-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=dough</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>batch_size</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertSelectedValue</td>
+	<td>batch_size</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2 cups flour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1 1/2 cups water</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1 tspn baking soda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1 tspn baking powder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>batch_size</td>
+	<td>label=2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>btn_new_batch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>4 cups flour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3 cups water</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2 tspns baking soda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>2 tspns baking powder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>batch_size</td>
+	<td>label=1/2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>btn_new_batch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1 cup flour</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>3/4 cup water</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1/2 tspn baking soda</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>1/2 tspn baking powder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>exact:Name: dough</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Originally from: made-up</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>exact:Description: Basic stuff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>exact:Directions: Mix together thoroughly in a big bowl, then knead forever and bake as desired.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Entered by: John</td>
 	<td></td>
 </tr>
 

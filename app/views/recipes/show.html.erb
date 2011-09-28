@@ -30,6 +30,7 @@
 </p>
 	<ol class="list_ingredients">
 <%	multiply_ingredients(@recipe, @current_batch_size)
+	abbreviate_and_pluralize_ingredients(@recipe)
 	@recipe.recipe_ingredients.each{ |ri| -%>
 		<li><%= ri.quantity_count %> <%= ri.quantity_type %> <%= ri.ingredient.name %></li>
 <%	} -%>
