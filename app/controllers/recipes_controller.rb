@@ -38,7 +38,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   # GET /recipes/new.xml
   def new
-    @recipe = Recipe.new
+  	@recipe = (flash[:recipe]) ? flash[:recipe] : Recipe.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -59,9 +59,14 @@ class RecipesController < ApplicationController
   # POST /recipes.xml
   def create
     @recipe = Recipe.new(params[:recipe])
-    errors = process_ingredient_inputs(params, @recipe)
-    if(errors) then
+    @errors = process_ingredient_inputs(params, @recipe)
+    @errors = ["You must include at least one ingredient in your recipe"] if @recipe.recipe_ingredients.empty?
+    if(! @errors.empty?) then
 		# reshow
+		@errors.each{ |msg| @recipe.errors[:base] << msg } 
+		respond_to do |format|
+			format.html { render :action => "new" }
+		end
 		return
 	end
 	@recipe.entered_by_id = @current_user.id
@@ -136,6 +141,6 @@ class RecipesController < ApplicationController
 			failures << [index, 'bad inputs']
 		end
 	}
-	return failures if ! failures.empty?
+	return failures
   end
 end

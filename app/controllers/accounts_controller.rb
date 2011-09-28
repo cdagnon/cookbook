@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
   # GET /accounts/new
   # GET /accounts/new.xml
   def new
-#  	@login = Login.new
+  	@login = Login.new
 	@account = Account.new( :language => 'English', :location_country => 'U.S.A.', :login => Login.new )
 	to_show_login		# makes the encryption keys
 
@@ -70,11 +70,15 @@ class AccountsController < ApplicationController
 	@login.salt = OpenSSL::Digest::SHA1.new( OpenSSL::Random.random_bytes(256)).hexdigest
 	@login.encrypted_pwd = OpenSSL::Digest::SHA1.new([@login.salt,pwd].to_s).hexdigest
 
+	is_valid = @login.valid?() & @account.valid?()
     respond_to do |format|
-      if @login.save && @account.save		# @account.login_id = @login.id && 
-      	  format.html { redirect_to(login_path, :notice => 'Account was successfully created.  Please log in to start adding recipes!') }
+      if is_valid
+      	@login.save
+      	@account.save 
+      	format.html { redirect_to(login_path, :notice => 'Account was successfully created.  Please log in to start adding recipes!') }
         format.xml  { render :xml => @account, :status => :created, :location => @account }
       else
+      	to_show_login		# makes the encryption keys
         format.html { render :action => "new" }
         format.xml  { render :xml => @account.errors, :status => :unprocessable_entity }
       end

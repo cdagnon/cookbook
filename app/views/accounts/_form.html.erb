@@ -51,12 +51,15 @@ $(document).ready(function() {
 });
 </script>
 <%= form_for(@account, :html => {:id => 'new_account'}) do |f| %>
-  <% if @account.errors.any? %>
+  <% if (@account.errors.any?() || @login.errors.any?()) %>
     <div id="error_explanation">
-      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+      <h2><%= pluralize((@account.errors.count+@login.errors.count), "error") %> prohibited this account from being saved:</h2>
 
       <ul>
       <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      <% @login.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
